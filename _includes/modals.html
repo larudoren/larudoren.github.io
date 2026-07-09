@@ -1,4 +1,4 @@
- <!-- Portfolio Modals -->
+  <!-- Portfolio Modals -->
  {% for post in site.posts %}
     <div class="portfolio-modal modal fade" id="portfolioModal{{ post.modal-id }}" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
@@ -16,21 +16,45 @@
                             <hr class="star-primary">
                             <img src="img/portfolio/{{ post.img }}" class="img-responsive img-centered" alt="{{ post.alt }}">
                             <p>{{ post.description }}</p>
+
+                            {% if post.tech %}
+                            <div class="tech-stack" style="margin-bottom: 20px;">
+                                {% assign techs = post.tech | split: ", " %}
+                                {% for tech in techs %}
+                                <span class="label label-primary" style="margin: 0 4px 4px 0; display: inline-block; padding: 5px 10px; font-size: 12px;">{{ tech }}</span>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+
                             <ul class="list-inline item-details">
-                                <li>Client:
-                                    <strong><a href="http://startbootstrap.com">{{ post.client }}</a>
-                                    </strong>
-                                </li>
                                 <li>Date:
-                                    <strong><a href="http://startbootstrap.com">{{ post.project-date }}</a>
-                                    </strong>
+                                    <strong>{{ post.project-date }}</strong>
                                 </li>
-                                <li>Service:
-                                    <strong><a href="http://startbootstrap.com">{{ post.category }}</a>
-                                    </strong>
+                                <li>Category:
+                                    <strong>{{ post.category }}</strong>
                                 </li>
+                                {% if post.role %}
+                                <li>Role:
+                                    <strong>{{ post.role }}</strong>
+                                </li>
+                                {% endif %}
                             </ul>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+
+                            <div style="margin-top: 25px;">
+                                {% if post.url %}
+                                <a href="{{ post.url }}" target="_blank" class="btn btn-primary" style="margin-right: 8px;">
+                                    <i class="fa fa-external-link"></i> View Project
+                                </a>
+                                {% endif %}
+                                {% if post.github %}
+                                <a href="{{ post.github }}" target="_blank" class="btn btn-default">
+                                    <i class="fa fa-github"></i> View Source
+                                </a>
+                                {% endif %}
+                                <button type="button" class="btn btn-default" data-dismiss="modal" style="margin-left: 8px;">
+                                    <i class="fa fa-times"></i> Close
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
