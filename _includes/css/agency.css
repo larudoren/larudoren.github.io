@@ -689,6 +689,10 @@ section#contact .form-control:focus {
     box-shadow: none;
 }
 
+section#contact .text-muted {
+    color: #ccc;
+}
+
 section#contact::-webkit-input-placeholder {
     text-transform: uppercase;
     font-family: {{ site.data.template.font.primary }};
